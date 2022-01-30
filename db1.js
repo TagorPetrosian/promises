@@ -1,5 +1,5 @@
-const promiseUsers = require('./utils');
+const { promiseUserLocation } = require('./utils');
 
 module.exports = function (id) {
-  return promiseUsers(id);
+  return promiseUserLocation(id);
 };

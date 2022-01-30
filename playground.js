@@ -1,4 +1,3 @@
-const db1 = require('./db1');
 function job(data) {
   const random = Math.floor(Math.random() * 3) + 1;
   return new Promise(function (resolve, reject) {
@@ -27,10 +26,10 @@ function test() {
 
 // test();
 
-function testDb() {
-  db1(1).then(function (data) {
+function testImports() {
+  mark(1).then(function (data) {
     console.log(data);
   });
 }
 
-// testDb();
+testImports();

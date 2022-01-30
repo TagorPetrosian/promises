@@ -1,5 +1,5 @@
 const users = require('./users');
-function promiseUsers(id) {
+function promiseUserLocation(id) {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
       const userData = users
@@ -14,4 +14,20 @@ function promiseUsers(id) {
   });
 }
 
-module.exports = promiseUsers;
+function promiseUserData(id) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      const userData = users
+        .filter((user) => user.id == id)
+        .map(({ firstname, lastname, email }) => ({
+          firstname,
+          lastname,
+          email,
+        }));
+
+      resolve(...userData);
+    }, 50);
+  });
+}
+
+module.exports = { promiseUserLocation, promiseUserData };

@@ -1,3 +1,10 @@
+const central = require('./central'),
+  db1 = require('./db1'),
+  db2 = require('./db2'),
+  db3 = require('./db3'),
+  vault = require('./vault'),
+  mark = require('./mark');
+
 function getDbData(id) {
   function dbHandler(data) {
     return data;
@@ -10,7 +17,7 @@ function getDbData(id) {
   return central(id).then(dbHandler).catch(centralError);
 }
 
-function getLocationData(db) {
+function getLocationData(db, id) {
   const dbs = { db1, db2, db3 };
 
   function extractData(data) {
@@ -45,7 +52,7 @@ function executeMark(id) {
 
 module.exports = function (id) {
   return new Promise(function (resolve, reject) {
-    return Promise.all([getDbData(id).then(getLocationData), getVaultData(id)])
+    return Promise.all([getDbData(id).then((db) => getLocationData(db, id)), getVaultData(id)])
       .then(function (data) {
         executeMark(id);
         return resolve({

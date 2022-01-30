@@ -1,4 +1,4 @@
-let central = require('./central'),
+const central = require('./central'),
   db1 = require('./db1'),
   db2 = require('./db2'),
   db3 = require('./db3'),
