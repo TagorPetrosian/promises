@@ -2,14 +2,29 @@
 var chance = require('chance').Chance();
 
 // Use Chance here.
-var my_random_string = chance.string();
 
-console.log(my_random_string);
+function populateUsers() {
+  let users = [];
 
-// export const users = [
-//   {
-//     id: 1,
-//     user: 'user1',
-//     country: 'Israel',
-//   },
-// ];
+  for (let i = 0; i < 10; i++) {
+    const firstname = chance.first();
+    const lastname = chance.last();
+    const id = i + 1;
+    const username = `${firstname}${lastname}${id}`;
+    users.push({
+      id,
+      username,
+      firstname,
+      lastname,
+      country: chance.country(),
+      email: chance.email(),
+    });
+  }
+
+  return users;
+}
+
+const users = populateUsers();
+// console.log('freshly generated users:', users);
+
+module.exports = users;
