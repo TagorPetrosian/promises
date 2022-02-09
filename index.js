@@ -1,5 +1,6 @@
 let job = require('./exercise1');
 let exe2 = require('./exercise2');
+let exe3 = require('./exe3');
 
 async function test() {
   const randomId = Math.floor(Math.random() * 10) + 1; // random number from 1 to 10;
