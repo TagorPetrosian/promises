@@ -1,10 +1,13 @@
 class LPromise {
+  onFulfilledCallbacks = [];
+  onRejectedCallbacks = [];
   status = 'pending';
   constructor(handler) {
     const resolve = (value) => {
       if (this.status === 'pending') {
         this.status = 'fulfilled';
         this.value = value;
+        this.onFulfilledCallbacks.forEach((fn) => fn(this.value));
       }
     };
 
@@ -12,6 +15,7 @@ class LPromise {
       if (this.status === 'pending') {
         this.status = 'rejected';
         this.value = value;
+        this.onFulfilledCallbacks.forEach((fn) => fn(this.value));
       }
     };
 
@@ -23,7 +27,10 @@ class LPromise {
   }
 
   then(onFulfilled, onRejected) {
-    if (this.status === 'fulfilled') {
+    if (this.status === 'pending') {
+      this.onFulfilledCallbacks.push(onFulfilled);
+      this.onRejectedCallbacks.push(onRejected);
+    } else if (this.status === 'fulfilled') {
       onFulfilled(this.value);
     } else if (this.status === 'rejected') {
       onRejected(this.value);
