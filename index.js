@@ -1,14 +1,17 @@
 let job = require('./exercise1');
 let exe2 = require('./exercise2');
 let exe3 = require('./exe3');
+let exe4 = require('./exe4');
+
 const { LPromise } = require('./Promise/L3Promise');
 
-// async function test() {
-//   const randomId = Math.floor(Math.random() * 10) + 1; // random number from 1 to 10;
-//   const res = await job(randomId);
+async function test() {
+  const randomId = Math.floor(Math.random() * 10) + 1; // random number from 1 to 10;
+  const res = await exe4(randomId);
 
-//   console.log('res', res);
-// }
+  console.log('res', res);
+}
+test();
 
 // async function test2() {
 //   const randomId = Math.floor(Math.random() * 10) + 1; // random number from 1 to 10;
@@ -19,9 +22,9 @@ const { LPromise } = require('./Promise/L3Promise');
 
 // test2();
 
-const p1 = new LPromise((resolve, reject) => {
-  setTimeout(() => resolve('resolved first one'), 1000);
-});
+// const p1 = new LPromise((resolve, reject) => {
+//   setTimeout(() => resolve('resolved first one'), 1000);
+// });
 
 // const p2 = new LPromise((resolve, reject) => {
 //   reject('rejected!');
@@ -45,11 +48,11 @@ const p1 = new LPromise((resolve, reject) => {
 //   }
 // );
 
-p1.then((res) => {
-  console.log(res);
-  return new LPromise((resolve) => {
-    setTimeout(() => resolve('resolved second one'), 1000);
-  });
-}).then((res) => {
-  console.log(res);
-});
+// p1.then((res) => {
+//   console.log(res);
+//   return new LPromise((resolve) => {
+//     setTimeout(() => resolve('resolved second one'), 1000);
+//   });
+// }).then((res) => {
+//   console.log(res);
+// });
